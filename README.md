@@ -26,3 +26,17 @@ Instalamos php
 Tras eso nos preguntara nuestra región y zona horaria, despues comenzará a mostrarse una pantalla con el proceso de instalación
 
 ![Texto alternativo](fotoInstalacionphp.jpg)
+
+Ahora probámos apache con el siguiente comando:
+-`echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php`
+
+En el navegador introducimos http://10.0.9.152 (la ip de mi máquina) y entraríamos a la página por defecto de apache
+
+![Texto alternativo](probamosApacheServer.jpg)
+
+Ahóra procedémos con la instalación de curl:
+-`apt-get update && apt-get install -y curl`
+y comprobamos el funcionamiento del archivo info.php
+-`curl localhost/info.php`
+
+
