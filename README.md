@@ -36,7 +36,8 @@ En el navegador introducimos http://10.0.9.152 (la ip de mi máquina) y entrarí
 
 Ahóra procedémos con la instalación de curl:
 -`apt-get update && apt-get install -y curl`
+
 y comprobamos el funcionamiento del archivo info.php
 -`curl localhost/info.php`
 
-
+![Texto alternativo](instalarCurl.jpg)
