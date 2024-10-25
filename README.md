@@ -41,3 +41,77 @@ y comprobamos el funcionamiento del archivo info.php
 -`curl localhost/info.php`
 
 ![Texto alternativo](instalarCurl.jpg)
+
+>2. Utiliza esta guía para instalar wordpress en el contenedor.
+
+Ejecutamos el siguiente comándo para instalar los paquetes necesarios:
+-`sudo apt install ghostscript \
+                 libapache2-mod-php \
+                 mysql-server \
+                 php \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip
+`
+Creamos la instalación para el directorio:
+-`sudo mkdir -p /srv/www`
+
+-`sudo chown www-data: /srv/www`
+
+-`curl https://wordpress.org/latest.tar.gz | tar zx -C /srv/www`
+
+Usa echo para crear el archivo /etc/apache2/sites-available/wordpress.conf
+y redirigir la configuración a este archivo
+-`cat <<EOF > /etc/apache2/sites-available/wordpress.conf`
+
+```
+<VirtualHost *:80>
+    DocumentRoot /srv/www/wordpress
+    <Directory /srv/www/wordpress>
+        Options FollowSymLinks
+        AllowOverride Limit Options FileInfo
+        DirectoryIndex index.php
+        Require all granted
+    </Directory>
+    <Directory /srv/www/wordpress/wp-content>
+        Options FollowSymLinks
+        Require all granted
+    </Directory>
+</VirtualHost>
+EOF
+```
+Reiniciamos apache2
+-`service apache2 reload`
+
+Una vez cargado apache2 de nuevo, ejecutamos los siguientes comandos
+-`a2ensite wordpress`
+-`a2ensite wordpress`
+
+Reiniciamos apache2
+-`service apache2 reload`
+
+Ejecutamos el siguiente comando:
+-`sudo a2dissite 000-default`
+
+Y por ultimo,reiniciamos apache2
+-`service apache2 reload`
+
+Comandos a ejecutar para la configuracion de la base de datos para wordpress
+
+1:-`mysql -u root`
+2:-`CREATE DATABASE wordpress;`
+3:-`CREATE USER 'wordpress'@'localhost' IDENTIFIED BY '<your-password>';`
+4:-`GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER ON wordpress.* TO 'wordpress'@'localhost';`
+5:-`FLUSH PRIVILEGES;`
+6:-`QUIT;`
+
+Comprobamos que accedemos a wordpress
+http://(IP de la maquina):8080/wp-admin/setup-config.php
+
+Y habrémos terminado la instalación y configuración y accedido a wordpress
