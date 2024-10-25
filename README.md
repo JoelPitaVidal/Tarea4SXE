@@ -16,8 +16,13 @@ Siguiendo los pasos de la guía,actualizamos los paquetes:
 Instalamos apache2 y luego el servidor de base de datos mariaDB:
 -`sudo apt install -y apache2 apache2-utils`
 -`sudo apt install -y mariadb-server mariadb-client`
+
+
 Utilizamos el siguiente comando para proteger la instalación mySQL
 -`sudo mysql_secure_installation`
+
 Instalamos php
 -`sudo apt install -y php php-mysql libapache2-mod-php`
+
 Tras eso nos preguntara nuestra región y zona horaria, despues comenzará a mostrarse una pantalla con el proceso de instalación
+<img fotoinstalacionnphp>
